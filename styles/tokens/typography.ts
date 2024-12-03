@@ -1,19 +1,19 @@
 // font name should be the same as the file name
 export type FontFamily =
-  | "SpaceMono-Regular"
-  | "Inter-Regular"
-  | "Inter-Medium"
-  | "Inter-SemiBold"
-  | "Inter-Bold"
-  | "InterDisplay-ExtraBold";
+  | 'SpaceMono-Regular'
+  | 'Inter-Regular'
+  | 'Inter-Medium'
+  | 'Inter-SemiBold'
+  | 'Inter-Bold'
+  | 'InterDisplay-ExtraBold';
 
 export const fontFamilies = {
-  interRegular: "Inter-Regular",
-  interMedium: "Inter-Medium",
-  interSemiBold: "Inter-SemiBold",
-  interBold: "Inter-Bold",
-  interDisplayExtraBold: "InterDisplay-ExtraBold",
-  spaceMonoRegular: "SpaceMono-Regular",
+  interRegular: 'Inter-Regular',
+  interMedium: 'Inter-Medium',
+  interSemiBold: 'Inter-SemiBold',
+  interBold: 'Inter-Bold',
+  interDisplayExtraBold: 'InterDisplay-ExtraBold',
+  spaceMonoRegular: 'SpaceMono-Regular',
 } as const;
 
 // Using the `Major Second` type scale (1.125)

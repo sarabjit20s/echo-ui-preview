@@ -1,7 +1,7 @@
-import { lightThemeColors, darkThemeColors } from "./tokens/colors";
-import { radius } from "./tokens/radius";
-import { space } from "./tokens/space";
-import { typography } from "./tokens/typography";
+import { lightThemeColors, darkThemeColors } from './tokens/colors';
+import { radius } from './tokens/radius';
+import { space } from './tokens/space';
+import { typography } from './tokens/typography';
 
 export const lightTheme = {
   colors: lightThemeColors,
