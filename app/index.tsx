@@ -1,15 +1,50 @@
-import { Text, View } from "react-native";
+import React from 'react';
+import { View } from 'react-native';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
+
+import { Text } from '@/components/ui/Text';
+import ExampleList from '@/components/ExampleList';
+import LogoIcon from '@/components/LogoIcon';
 
 export default function Index() {
+  const { styles } = useStyles(stylesheet);
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.logo}>
+          <LogoIcon size="xs" color="primary" />
+          <Text
+            variant="headingSm"
+            fontFamily="interMedium"
+            color="primary"
+            colorStep="9">
+            EchoUI
+          </Text>
+        </View>
+        <Text variant="labelLg" highContrast>
+          Browse components
+        </Text>
+      </View>
+      <ExampleList />
     </View>
   );
 }
+
+const stylesheet = createStyleSheet((theme, rt) => ({
+  container: {
+    flex: 1,
+    paddingTop: rt.statusBar.height + theme.space[4],
+    backgroundColor: theme.colors.background,
+  },
+  header: {
+    gap: theme.space[16],
+    paddingBottom: theme.space[4],
+    paddingHorizontal: theme.space[16],
+  },
+  logo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.space[8],
+  },
+}));
