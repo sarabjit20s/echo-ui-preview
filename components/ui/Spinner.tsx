@@ -24,10 +24,10 @@ type SpinnerProps = {
 };
 
 const spinnerSizeMap: Record<NonNullable<SpinnerProps['size']>, number> = {
-  xs: 20,
-  sm: 24,
-  md: 28,
-  lg: 32,
+  xs: 16,
+  sm: 20,
+  md: 24,
+  lg: 28,
   xl: 36,
 };
 
@@ -57,14 +57,11 @@ const Spinner = React.forwardRef<React.ElementRef<typeof Svg>, SpinnerProps>(
     const rotation = useSharedValue(0);
 
     React.useEffect(() => {
-      if (!loading) {
-        return;
-      }
       rotation.value = withRepeat(
         withTiming(360, { duration: 600, easing: Easing.linear }),
         -1,
       );
-    }, [rotation, loading]);
+    }, [rotation]);
 
     const animatedStyles = useAnimatedStyle(() => ({
       transform: [{ rotate: `${rotation.value}deg` }],
