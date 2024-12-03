@@ -7,20 +7,20 @@ import Animated, {
   Easing,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import Svg, { Circle, SvgProps } from 'react-native-svg';
+import Svg, { Circle } from 'react-native-svg';
 import { useStyles } from 'react-native-unistyles';
 
 import { Color, ColorStep } from '@/styles/tokens/colors';
 
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
-type SpinnerProps = Omit<SvgProps, 'style'> & {
+type SpinnerProps = {
   color?: Color;
   colorStep?: ColorStep;
   highContrast?: boolean;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   loading?: boolean;
-  containerStyle?: ViewStyle;
+  style?: ViewStyle;
 };
 
 const spinnerSizeMap: Record<NonNullable<SpinnerProps['size']>, number> = {
@@ -39,8 +39,7 @@ const Spinner = React.forwardRef<React.ElementRef<typeof Svg>, SpinnerProps>(
       highContrast = false,
       loading = true,
       size: sizeProp = 'md',
-      containerStyle: containerStyleProp,
-      ...restProps
+      style,
     }: SpinnerProps,
     forwardedRef,
   ) => {
@@ -81,8 +80,7 @@ const Spinner = React.forwardRef<React.ElementRef<typeof Svg>, SpinnerProps>(
         width={size}
         height={size}
         viewBox={`0 0 ${size} ${size}`}
-        style={[animatedStyles]}
-        {...restProps}>
+        style={[animatedStyles, style]}>
         <Circle
           r={radius}
           cx={center}

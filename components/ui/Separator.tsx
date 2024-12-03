@@ -1,5 +1,5 @@
+import React from 'react';
 import { View, ViewProps } from 'react-native';
-import { forwardRef } from 'react';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import { Color, ColorStep } from '@/styles/tokens/colors';
@@ -11,7 +11,7 @@ type SeparatorProps = ViewProps & {
   type?: 'hairline' | 'pixel' | 'cell' | 'section';
 };
 
-const Separator = forwardRef<View, SeparatorProps>(
+const Separator = React.forwardRef<View, SeparatorProps>(
   (
     {
       color = 'neutral',
