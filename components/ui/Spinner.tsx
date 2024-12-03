@@ -32,12 +32,27 @@ const spinnerSizeMap: Record<NonNullable<SpinnerProps['size']>, number> = {
 };
 
 const Spinner = React.forwardRef<React.ElementRef<typeof Svg>, SpinnerProps>(
+  ({ loading = true, ...restProps }: SpinnerProps, forwardedRef) => {
+    if (!loading) {
+      return null;
+    }
+    return <SpinnerImpl ref={forwardedRef} {...restProps} />;
+  },
+);
+
+Spinner.displayName = 'Spinner';
+
+type SpinnerImplProps = Omit<SpinnerProps, 'loading'>;
+
+const SpinnerImpl = React.forwardRef<
+  React.ElementRef<typeof Svg>,
+  SpinnerImplProps
+>(
   (
     {
       color: colorProp = 'neutral',
       colorStep,
       highContrast = false,
-      loading = true,
       size: sizeProp = 'md',
       style,
     }: SpinnerProps,
@@ -67,10 +82,6 @@ const Spinner = React.forwardRef<React.ElementRef<typeof Svg>, SpinnerProps>(
       transform: [{ rotate: `${rotation.value}deg` }],
     }));
 
-    if (!loading) {
-      return null;
-    }
-
     return (
       <AnimatedSvg
         ref={forwardedRef}
@@ -93,7 +104,7 @@ const Spinner = React.forwardRef<React.ElementRef<typeof Svg>, SpinnerProps>(
   },
 );
 
-Spinner.displayName = 'Spinner';
+SpinnerImpl.displayName = 'SpinnerImpl';
 
 export { Spinner };
 export type { SpinnerProps };
