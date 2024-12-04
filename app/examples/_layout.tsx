@@ -45,7 +45,7 @@ const stylesheet = createStyleSheet((theme, rt) => ({
     alignItems: 'center',
     paddingHorizontal: theme.space[8],
     height: theme.space[56],
-    borderBottomWidth: 1,
+    borderBottomWidth: rt.hairlineWidth,
     borderColor: theme.colors.neutral6,
   },
   button: {
