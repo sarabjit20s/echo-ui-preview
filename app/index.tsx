@@ -13,12 +13,8 @@ export default function Index() {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.logo}>
-          <LogoIcon size="xs" color="primary" />
-          <Text
-            variant="headingSm"
-            fontFamily="interMedium"
-            color="primary"
-            colorStep="9">
+          <LogoIcon size="xs" color="primary" colorStep="11" />
+          <Text variant="headingSm" color="primary">
             EchoUI
           </Text>
         </View>
