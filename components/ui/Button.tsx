@@ -257,25 +257,25 @@ const stylesheet = createStyleSheet(({ colors, radius, space }) => ({
     const isLast = position === 'last';
     if (orientation === 'horizontal') {
       return {
-        borderBottomEndRadius: isFirst || isMiddle ? 0 : radius.md,
-        borderStartEndRadius: isFirst || isMiddle ? 0 : radius.md,
-        borderStartStartRadius: isLast || isMiddle ? 0 : radius.md,
-        borderEndStartRadius: isLast || isMiddle ? 0 : radius.md,
+        borderBottomRightRadius: isFirst || isMiddle ? 0 : radius.md,
+        borderTopRightRadius: isFirst || isMiddle ? 0 : radius.md,
+        borderTopLeftRadius: isLast || isMiddle ? 0 : radius.md,
+        borderBottomLeftRadius: isLast || isMiddle ? 0 : radius.md,
         variants: {
           variant: {
             outline: {
-              borderEndWidth: isFirst || isMiddle ? 0 : 1,
-              borderStartWidth: isLast || isMiddle ? 0 : 1,
+              borderRightWidth: isFirst || isMiddle ? 0 : 1,
+              borderLeftWidth: isLast || isMiddle ? 0 : 1,
             },
           },
         },
       };
     } else {
       return {
-        borderBottomEndRadius: isFirst || isMiddle ? 0 : radius.md,
-        borderBottomStartRadius: isFirst || isMiddle ? 0 : radius.md,
-        borderTopStartRadius: isLast || isMiddle ? 0 : radius.md,
-        borderTopEndRadius: isLast || isMiddle ? 0 : radius.md,
+        borderBottomRightRadius: isFirst || isMiddle ? 0 : radius.md,
+        borderBottomLeftRadius: isFirst || isMiddle ? 0 : radius.md,
+        borderTopLeftRadius: isLast || isMiddle ? 0 : radius.md,
+        borderTopRightRadius: isLast || isMiddle ? 0 : radius.md,
         variants: {
           variant: {
             outline: {
