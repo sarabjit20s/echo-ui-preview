@@ -38,6 +38,10 @@ const examples: Example[] = [
     name: 'Icon Button',
     href: '/examples/icon-button',
   },
+  {
+    name: 'Avatar',
+    href: '/examples/avatar',
+  },
 ];
 
 export default function ExampleList() {
