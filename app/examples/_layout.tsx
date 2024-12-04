@@ -1,27 +1,32 @@
-import { TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 import { Link, Slot, useUnstableGlobalHref } from 'expo-router';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import { Text } from '@/components/ui/Text';
-import { Icon } from '@/components/ui/Icon';
+import { IconButton } from '@/components/ui/IconButton';
 
 export default function ComponentLayout() {
   const { styles } = useStyles(stylesheet);
 
   const globalHref = useUnstableGlobalHref();
-  const title = globalHref.split('/').pop() ?? 'Component';
+  const title =
+    globalHref.split('/').pop()?.split('-').join(' ') ?? 'Component';
 
   return (
     <View style={styles.layout}>
       <View style={styles.header}>
         <Link href={'..'} asChild>
-          <TouchableOpacity style={styles.button}>
-            <Icon name="chevron-back" color="primary" size="lg" />
-            <Text variant="labelMd" color="primary" style={styles.text}>
-              {title}
-            </Text>
-          </TouchableOpacity>
+          <IconButton
+            icon="chevron-back"
+            color="neutral"
+            variant="text"
+            highContrast
+            accessibilityLabel="Go back"
+          />
         </Link>
+        <Text variant="labelMd" highContrast style={styles.title}>
+          {title}
+        </Text>
       </View>
       <Slot />
     </View>
@@ -38,7 +43,7 @@ const stylesheet = createStyleSheet((theme, rt) => ({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: theme.space[16],
+    paddingHorizontal: theme.space[8],
     height: theme.space[56],
     borderBottomWidth: 1,
     borderColor: theme.colors.neutral6,
@@ -49,7 +54,7 @@ const stylesheet = createStyleSheet((theme, rt) => ({
     gap: theme.space[8],
     height: theme.space[44],
   },
-  text: {
+  title: {
     textTransform: 'capitalize',
   },
 }));
