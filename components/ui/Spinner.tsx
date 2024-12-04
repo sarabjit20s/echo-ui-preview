@@ -18,12 +18,13 @@ type SpinnerProps = {
   color?: Color;
   colorStep?: ColorStep;
   highContrast?: boolean;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   loading?: boolean;
   style?: ViewStyle;
 };
 
 const spinnerSizeMap: Record<NonNullable<SpinnerProps['size']>, number> = {
+  xxs: 12,
   xs: 16,
   sm: 20,
   md: 24,
@@ -63,8 +64,8 @@ const SpinnerImpl = React.forwardRef<
     const color =
       theme.colors[`${colorProp}${colorStep ?? (highContrast ? 12 : 11)}`];
 
-    const strokeWidth = 3;
     const size = spinnerSizeMap[sizeProp];
+    const strokeWidth = size / 12;
     const center = size / 2;
     const radius = size / 2 - strokeWidth / 2;
     const circumference = 2 * Math.PI * radius;
