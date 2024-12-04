@@ -17,7 +17,7 @@ export default function ComponentLayout() {
       <View style={styles.header}>
         <Link href={'..'} asChild>
           <IconButton
-            icon="chevron-back"
+            icon="arrow-back"
             color="neutral"
             variant="text"
             highContrast
@@ -43,16 +43,11 @@ const stylesheet = createStyleSheet((theme, rt) => ({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: theme.space[8],
     paddingHorizontal: theme.space[8],
     height: theme.space[56],
     borderBottomWidth: rt.hairlineWidth,
     borderColor: theme.colors.neutral6,
-  },
-  button: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: theme.space[8],
-    height: theme.space[44],
   },
   title: {
     textTransform: 'capitalize',
