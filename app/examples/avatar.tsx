@@ -100,7 +100,6 @@ function AvatarVariantExample() {
         </Text>
         <View style={styles.rowGroup}>
           <Avatar size="md" variant="solid">
-            <AvatarImage src="" />
             <AvatarFallback>
               <Text variant="labelSm" color="primary" colorStep="Contrast">
                 MW
@@ -108,7 +107,6 @@ function AvatarVariantExample() {
             </AvatarFallback>
           </Avatar>
           <Avatar size="md" variant="soft">
-            <AvatarImage src="" />
             <AvatarFallback>
               <Text variant="labelSm" color="primary">
                 SL

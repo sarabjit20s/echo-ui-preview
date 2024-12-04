@@ -2,6 +2,7 @@ import { ScrollView, View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import { Text } from '@/components/ui/Text';
+import { TextVariants, textVariants } from '@/styles/tokens/typography';
 
 export default function Page() {
   const { styles } = useStyles(stylesheet);
@@ -18,18 +19,23 @@ export default function Page() {
 
 function TextVariantExample() {
   const { styles } = useStyles(stylesheet);
+  const variants = Object.keys(textVariants);
   return (
     <View style={styles.group}>
       <Text variant="headingSm" highContrast>
         Variants
       </Text>
 
-      <Text variant="displayLg">
-        Display<Text>{'  '}Large</Text>
-      </Text>
-      <Text variant="displayMd">
-        Display<Text>{'  '}Medium</Text>
-      </Text>
+      {variants.map((v, i) => {
+        return (
+          <View key={i} style={styles.row}>
+            <Text>{v}: </Text>
+            <Text variant={v as keyof TextVariants}>Echo</Text>
+          </View>
+        );
+      })}
+      {/* <Text variant="displayLg">Display Large</Text>
+      <Text variant="displayMd">Display Medium</Text>
       <Text variant="displaySm">
         Display<Text>{'  '}Small</Text>
       </Text>
@@ -55,7 +61,7 @@ function TextVariantExample() {
       <Text variant="bodyLg">Body Large</Text>
       <Text variant="bodyMd">Body Medium</Text>
       <Text variant="bodySm">Body Small</Text>
-      <Text variant="bodyXs">Body Extra Small</Text>
+      <Text variant="bodyXs">Body Extra Small</Text> */}
     </View>
   );
 }
@@ -123,5 +129,10 @@ const stylesheet = createStyleSheet((theme, rt) => ({
   group: {
     marginVertical: theme.space[8],
     gap: theme.space[12],
+  },
+  row: {
+    flexDirection: 'row',
+    gap: theme.space[8],
+    alignItems: 'baseline',
   },
 }));
