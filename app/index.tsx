@@ -30,7 +30,7 @@ export default function Index() {
 const stylesheet = createStyleSheet((theme, rt) => ({
   container: {
     flex: 1,
-    paddingTop: rt.statusBar.height + theme.space[4],
+    paddingTop: rt.statusBar.height + theme.space[12],
     backgroundColor: theme.colors.background,
   },
   header: {
