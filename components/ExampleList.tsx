@@ -58,6 +58,10 @@ const examples: Example[] = [
     name: 'Text Input',
     href: '/examples/text-input',
   },
+  {
+    name: 'Text Area',
+    href: '/examples/text-area',
+  },
 ];
 
 export default function ExampleList() {
