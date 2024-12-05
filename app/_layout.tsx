@@ -1,11 +1,12 @@
 import { StatusBar } from 'react-native';
 import { Stack } from 'expo-router';
+import { UnistylesProvider } from 'react-native-unistyles';
 
 import '@/styles/unistyles';
 
 export default function RootLayout() {
   return (
-    <>
+    <UnistylesProvider>
       <Stack
         screenOptions={{
           headerShown: false,
@@ -13,6 +14,6 @@ export default function RootLayout() {
         }}
       />
       <StatusBar backgroundColor="transparent" translucent />
-    </>
+    </UnistylesProvider>
   );
 }
