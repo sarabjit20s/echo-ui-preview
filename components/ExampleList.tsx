@@ -62,6 +62,10 @@ const examples: Example[] = [
     name: 'Text Area',
     href: '/examples/text-area',
   },
+  {
+    name: 'Alert',
+    href: '/examples/alert',
+  },
 ];
 
 export default function ExampleList() {
