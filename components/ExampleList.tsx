@@ -46,6 +46,10 @@ const examples: Example[] = [
     name: 'Accordion',
     href: '/examples/accordion',
   },
+  {
+    name: 'Checkbox',
+    href: '/examples/checkbox',
+  },
 ];
 
 export default function ExampleList() {
