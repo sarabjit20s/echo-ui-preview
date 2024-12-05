@@ -5,7 +5,6 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles';
 import { Text } from '@/components/ui/Text';
 import {
   Checkbox,
-  CheckboxIcon,
   CheckboxIndicator,
   CheckboxProps,
 } from '@/components/ui/Checkbox';
@@ -39,9 +38,7 @@ function CheckboxSizeExample() {
         {sizes.map((size, i) => {
           return (
             <Checkbox key={i} size={size} defaultChecked>
-              <CheckboxIndicator>
-                <CheckboxIcon />
-              </CheckboxIndicator>
+              <CheckboxIndicator />
             </Checkbox>
           );
         })}
@@ -70,9 +67,7 @@ function CheckboxVariantExample() {
           {variants.map((variant, i) => {
             return (
               <Checkbox key={i} variant={variant} defaultChecked>
-                <CheckboxIndicator>
-                  <CheckboxIcon />
-                </CheckboxIndicator>
+                <CheckboxIndicator />
               </Checkbox>
             );
           })}
@@ -100,9 +95,7 @@ function CheckboxColorExample() {
           {colors.map((color, i) => {
             return (
               <Checkbox key={i} color={color} defaultChecked>
-                <CheckboxIndicator>
-                  <CheckboxIcon />
-                </CheckboxIndicator>
+                <CheckboxIndicator />
               </Checkbox>
             );
           })}
@@ -135,9 +128,7 @@ function CheckboxHightContrastExample() {
                 variant="soft"
                 defaultChecked
                 highContrast>
-                <CheckboxIndicator>
-                  <CheckboxIcon />
-                </CheckboxIndicator>
+                <CheckboxIndicator />
               </Checkbox>
             );
           })}
@@ -158,9 +149,7 @@ function CheckboxDisabledExample() {
         </Text>
         <View style={styles.rowGroup}>
           <Checkbox defaultChecked disabled>
-            <CheckboxIndicator>
-              <CheckboxIcon />
-            </CheckboxIndicator>
+            <CheckboxIndicator />
           </Checkbox>
         </View>
       </View>
@@ -179,9 +168,7 @@ function CheckboxWithLabelExample() {
         </Text>
         <View style={styles.rowGroup}>
           <Checkbox style={styles.checkboxWithLabel}>
-            <CheckboxIndicator>
-              <CheckboxIcon />
-            </CheckboxIndicator>
+            <CheckboxIndicator />
             <Text variant="labelMd" highContrast>
               I agree to the terms and conditions.
             </Text>

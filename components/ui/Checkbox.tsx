@@ -113,59 +113,66 @@ type CheckboxIndicatorProps = ViewProps;
 const CheckboxIndicator = React.forwardRef<
   React.ElementRef<typeof View>,
   ViewProps
->(({ children, style, ...restProps }: CheckboxIndicatorProps, forwardedRef) => {
-  const { checked, disabled, color, size, variant } = useCheckboxContext();
-  const { styles } = useStyles(stylesheet, {
-    size,
-    variant,
-  });
+>(
+  (
+    { children: childrenProp, style, ...restProps }: CheckboxIndicatorProps,
+    forwardedRef,
+  ) => {
+    const { checked, disabled, color, size, variant, highContrast } =
+      useCheckboxContext();
+    const { styles } = useStyles(stylesheet, {
+      size,
+      variant,
+    });
+    const colorStep: ColorStep =
+      variant === 'solid' ? 'Contrast' : highContrast ? '12' : '11';
 
-  return (
-    <View
-      ref={forwardedRef}
-      style={[
-        styles.checkboxIndicator(checked, color),
-        disabled && styles.checkboxIndicatorDisabled,
-        style,
-      ]}
-      {...restProps}>
-      {checked && children}
-    </View>
-  );
-});
+    const children = childrenProp ?? (
+      <CheckIcon
+        size={size}
+        color={color}
+        colorStep={colorStep}
+        disabled={disabled}
+        highContrast={highContrast}
+      />
+    );
+
+    return (
+      <View
+        ref={forwardedRef}
+        style={[
+          styles.checkboxIndicator(checked, color),
+          disabled && styles.checkboxIndicatorDisabled,
+          style,
+        ]}
+        {...restProps}>
+        {checked && children}
+      </View>
+    );
+  },
+);
 
 CheckboxIndicator.displayName = 'CheckboxIndicator';
 
-type CheckboxIconProps = Omit<IconProps, 'name'> & {
-  name?: IconProps['name'];
-};
+type CheckboxIconProps = IconProps;
 
 const CheckboxIcon = React.forwardRef<
   React.ElementRef<typeof Icon>,
   CheckboxIconProps
->(({ name, ...restProps }: CheckboxIconProps, forwardedRef) => {
+>(({ ...restProps }: CheckboxIconProps, forwardedRef) => {
   const { disabled, color, size, variant, highContrast } = useCheckboxContext();
   const colorStep: ColorStep =
     variant === 'solid' ? 'Contrast' : highContrast ? '12' : '11';
 
-  return name ? (
+  return (
     <Icon
       ref={forwardedRef}
-      name={name}
       size={size}
       color={color}
       colorStep={colorStep}
       disabled={disabled}
       highContrast={highContrast}
       {...restProps}
-    />
-  ) : (
-    <CheckIcon
-      size={size}
-      color={color}
-      colorStep={colorStep}
-      disabled={disabled}
-      highContrast={highContrast}
     />
   );
 });
