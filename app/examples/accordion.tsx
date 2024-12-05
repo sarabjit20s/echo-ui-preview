@@ -10,6 +10,8 @@ import {
   AccordionTrigger,
 } from '@/components/ui/Accordion';
 import { Color } from '@/styles/tokens/colors';
+import { DeferRendering } from '@/components/DeferRendering';
+import { Spinner } from '@/components/ui/Spinner';
 
 export default function Page() {
   const { styles } = useStyles(stylesheet);
@@ -17,8 +19,12 @@ export default function Page() {
     <View style={styles.flex}>
       <ScrollView contentContainerStyle={styles.container}>
         <AccordionVariantExample />
-        <AccordionTypeExample />
-        <AccordionColorExample />
+        <DeferRendering delayMs={200} fallback={<Spinner />}>
+          <AccordionTypeExample />
+        </DeferRendering>
+        <DeferRendering delayMs={300} fallback={<Spinner />}>
+          <AccordionColorExample />
+        </DeferRendering>
       </ScrollView>
     </View>
   );
