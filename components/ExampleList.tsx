@@ -54,6 +54,10 @@ const examples: Example[] = [
     name: 'Radio Group',
     href: '/examples/radio-group',
   },
+  {
+    name: 'Text Input',
+    href: '/examples/text-input',
+  },
 ];
 
 export default function ExampleList() {
