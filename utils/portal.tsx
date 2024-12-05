@@ -1,22 +1,5 @@
 import * as React from 'react';
 
-/**
- * The Portal system allows rendering components into a different part of the
- * React component tree than where they are defined. This is useful for things
- * like modals, tooltips, and contextual menus.
- *
- * The Portal system is composed of three main components:
- *
- * - `PortalProvider`: This is the top-level component that provides the
- *   context for the Portal system. It is responsible for managing the
- *   containers and portals.
- * - `PortalContainer`: This is a component that represents a container where
- *   portals can be rendered. It is responsible for rendering the portals
- *   associated with the container.
- * - `Portal`: This is a component that represents a portal. It is responsible
- *   for adding and removing portals.
- */
-
 type PortalType = {
   id: string;
   children: React.ReactNode;
@@ -43,6 +26,7 @@ export const usePortal = () => {
   return context;
 };
 
+const DEFAULT_PORTAL_CONTAINER_ID = 'root';
 const PortalProvider = ({ children }: { children: React.ReactNode }) => {
   const containersRef = React.useRef(new Map<string, boolean>());
   const portalsRef = React.useRef(new Map<string, PortalType>());
@@ -69,7 +53,7 @@ const PortalProvider = ({ children }: { children: React.ReactNode }) => {
 
   const addContainer = React.useCallback((id: string) => {
     if (containersRef.current.has(id)) {
-      throw new Error(`Container with id '${id}' already exists.`);
+      throw new Error(`PortalContainer with id '${id}' already exists.`);
     } else {
       containersRef.current.set(id, true);
     }
@@ -89,7 +73,7 @@ const PortalProvider = ({ children }: { children: React.ReactNode }) => {
         notifySubscribers(portal.containerId);
       } else {
         throw new Error(
-          `Container with id '${portal.containerId}' does not exist.`,
+          `PortalContainer with id '${portal.containerId}' does not exist.`,
         );
       }
     },
@@ -144,6 +128,7 @@ const PortalProvider = ({ children }: { children: React.ReactNode }) => {
         subscribe,
       }}>
       {children}
+      <PortalContainer id={DEFAULT_PORTAL_CONTAINER_ID} />
     </PortalContext.Provider>
   );
 };
@@ -180,17 +165,17 @@ const PortalContainer = ({ id }: PortalContainerProps) => {
 };
 
 type PortalProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /**
    * The ID of the container to which the portal will be added.
    */
-  containerId: string;
+  containerId?: string;
 };
 
-const Portal = React.memo(function Portal({
+const Portal = ({
   children,
-  containerId,
-}: PortalProps) {
+  containerId = DEFAULT_PORTAL_CONTAINER_ID,
+}: PortalProps) => {
   const { addPortal, removePortal } = usePortal();
   const id = React.useId();
 
@@ -202,7 +187,7 @@ const Portal = React.memo(function Portal({
   }, [children, id, containerId, addPortal, removePortal]);
 
   return null;
-});
+};
 
-export { Portal, PortalProvider, PortalContainer };
+export { Portal, PortalProvider, PortalContainer, DEFAULT_PORTAL_CONTAINER_ID };
 export type { PortalContainerProps, PortalProps };
