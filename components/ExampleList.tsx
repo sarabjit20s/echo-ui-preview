@@ -50,6 +50,10 @@ const examples: Example[] = [
     name: 'Checkbox',
     href: '/examples/checkbox',
   },
+  {
+    name: 'Radio Group',
+    href: '/examples/radio-group',
+  },
 ];
 
 export default function ExampleList() {
