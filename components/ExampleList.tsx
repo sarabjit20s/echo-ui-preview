@@ -66,6 +66,10 @@ const examples: Example[] = [
     name: 'Alert',
     href: '/examples/alert',
   },
+  {
+    name: 'Popup',
+    href: '/examples/popup',
+  },
 ];
 
 export default function ExampleList() {
