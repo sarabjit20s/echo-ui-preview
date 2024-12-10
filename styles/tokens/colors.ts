@@ -1,7 +1,31 @@
-const commonColors = {
-  white: '#fff',
-  black: '#000',
-  transparent: 'transparent',
+const blackA = {
+  blackA1: 'hsla(0, 0%, 0%, 0.05)',
+  blackA2: 'hsla(0, 0%, 0%, 0.1)',
+  blackA3: 'hsla(0, 0%, 0%, 0.15)',
+  blackA4: 'hsla(0, 0%, 0%, 0.2)',
+  blackA5: 'hsla(0, 0%, 0%, 0.3)',
+  blackA6: 'hsla(0, 0%, 0%, 0.4)',
+  blackA7: 'hsla(0, 0%, 0%, 0.5)',
+  blackA8: 'hsla(0, 0%, 0%, 0.6)',
+  blackA9: 'hsla(0, 0%, 0%, 0.7)',
+  blackA10: 'hsla(0, 0%, 0%, 0.8)',
+  blackA11: 'hsla(0, 0%, 0%, 0.9)',
+  blackA12: 'hsla(0, 0%, 0%, 0.95)',
+};
+
+const whiteA = {
+  whiteA1: 'hsla(0, 0%, 100%, 0.05)',
+  whiteA2: 'hsla(0, 0%, 100%, 0.1)',
+  whiteA3: 'hsla(0, 0%, 100%, 0.15)',
+  whiteA4: 'hsla(0, 0%, 100%, 0.2)',
+  whiteA5: 'hsla(0, 0%, 100%, 0.3)',
+  whiteA6: 'hsla(0, 0%, 100%, 0.4)',
+  whiteA7: 'hsla(0, 0%, 100%, 0.5)',
+  whiteA8: 'hsla(0, 0%, 100%, 0.6)',
+  whiteA9: 'hsla(0, 0%, 100%, 0.7)',
+  whiteA10: 'hsla(0, 0%, 100%, 0.8)',
+  whiteA11: 'hsla(0, 0%, 100%, 0.9)',
+  whiteA12: 'hsla(0, 0%, 100%, 0.95)',
 };
 
 const primary = {
@@ -268,6 +292,14 @@ const greenDark = {
   greenTrack: '#30a46c',
 } as const;
 
+const commonColors = {
+  white: '#fff',
+  black: '#000',
+  transparent: 'transparent',
+  ...blackA,
+  ...whiteA,
+};
+
 const lightThemeColors = {
   ...commonColors,
   ...primary,
@@ -276,7 +308,7 @@ const lightThemeColors = {
   ...green,
 
   background: '#fff',
-  overlay: neutral.neutralA6,
+  overlay: blackA.blackA6,
   shadow: neutral.neutralA9,
 } as const;
 
@@ -288,7 +320,7 @@ const darkThemeColors = {
   ...greenDark,
 
   background: '#020202',
-  overlay: neutral.neutralA8,
+  overlay: blackA.blackA8,
   shadow: neutral.neutralA11,
 } as const;
 
