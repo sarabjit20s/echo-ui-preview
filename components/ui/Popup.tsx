@@ -20,6 +20,8 @@ import { Portal, PortalProps } from '@/utils/portal';
 import { useComposedRefs } from '@/utils/composeRefs';
 import { useControllableState } from '@/hooks/useControllableState';
 import { usePositioning, Placement, ArrowData } from '@/hooks/usePositioning';
+import { useScreenDimensions } from '@/hooks/useScreenDimensions';
+import { useInsets } from '@/hooks/useInsets';
 
 type PopupContextValue = {
   open: boolean;
@@ -298,10 +300,10 @@ const PopupContent = React.forwardRef<
       asChild,
       width,
       minWidth,
-      maxWidth,
+      maxWidth: maxWidthProp,
       height,
       minHeight,
-      maxHeight,
+      maxHeight: maxHeightProp,
       avoidCollisions = true,
       coverAnchorToAvoidCollisions = true,
       mainAxisOffset: mainAxisOffsetProp = 0,
@@ -345,6 +347,13 @@ const PopupContent = React.forwardRef<
       isTargetHeightFixed: height !== undefined,
       coverAnchorToAvoidCollisions,
     });
+
+    const { width: screenWidth, height: screenHeight } = useScreenDimensions();
+    const insets = useInsets();
+    const maxWidth = maxWidthProp ?? screenWidth;
+    const maxHeight =
+      maxHeightProp ?? screenHeight - insets.top - insets.bottom;
+
     // A default value based on the placement which can be helpful
     // for animations(like scale animation)
     const transformOrigin = getTransformOrigin(finalPlacement);
@@ -502,7 +511,6 @@ const stylesheet = createStyleSheet(({ colors, radius, space }, rt) => ({
   content: {
     position: 'absolute',
     backgroundColor: colors.neutral2,
-    padding: space[16],
     borderRadius: radius.lg,
     borderCurve: 'continuous',
   },

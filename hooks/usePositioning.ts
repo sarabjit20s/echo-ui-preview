@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useScreenDimensions } from './useScreenDimensions';
+import { useInsets } from './useInsets';
 
 type Rect = {
   x: number;
@@ -102,17 +102,17 @@ const usePositioning = (
     coverAnchorToAvoidCollisions = false,
   } = options;
   const { width: screenWidth, height: screenHeight } = useScreenDimensions();
-  const { top: topInset } = useSafeAreaInsets();
+  const insets = useInsets();
 
   const boundaryRect: Rect = React.useMemo(() => {
     return {
       x: 0,
-      y: topInset,
+      y: insets.top,
       width: screenWidth,
       // don't use window height here due to some issues(such as excluded status bar height) on Android
-      height: screenHeight - topInset,
+      height: screenHeight - insets.top - insets.bottom,
     };
-  }, [screenWidth, screenHeight, topInset]);
+  }, [screenWidth, screenHeight, insets.top, insets.bottom]);
 
   const [anchorRect, setAnchorRect] = React.useState<Rect | null>(null);
   const [targetSize, setTargetSize] = React.useState<Size | null>(null);
@@ -193,7 +193,6 @@ const usePositioning = (
             x: xData.x,
             y: yData.y,
             anchorRect,
-            targetSize: _targetSize,
             arrowSize,
             mainAxis,
             side,
@@ -805,7 +804,6 @@ type GetArrowDataParams = {
   x: number;
   y: number;
   anchorRect: Rect;
-  targetSize: Size;
   arrowSize: Size;
   mainAxis: Axis;
   side: Side;
@@ -815,7 +813,6 @@ function getArrowData({
   x,
   y,
   anchorRect,
-  targetSize,
   arrowSize,
   mainAxis,
   side,
@@ -826,11 +823,7 @@ function getArrowData({
 
   if (mainAxis === 'x') {
     const anchorShiftY = anchorRect.y + anchorRect.height / 2;
-    const targetHalfHeight = targetSize.height / 2;
-    const fy =
-      targetSize.height <= anchorRect.height
-        ? targetHalfHeight
-        : anchorShiftY - y;
+    const fy = anchorShiftY - y;
     let arrowY = fy - arrowSize.height / 2;
     const arrowHeightAt90DegRotation =
       arrowSize.width - (arrowSize.width - arrowSize.height) / 2;
@@ -849,9 +842,7 @@ function getArrowData({
     }
   } else {
     const anchorShiftX = anchorRect.x + anchorRect.width / 2;
-    const targetHalfWidth = targetSize.width / 2;
-    const fx =
-      targetSize.width <= anchorRect.width ? targetHalfWidth : anchorShiftX - x;
+    const fx = anchorShiftX - x;
     let arrowX = fx - arrowSize.width / 2;
     if (side === 'top') {
       rotate = 180;

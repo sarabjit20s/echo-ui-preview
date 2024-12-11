@@ -21,40 +21,31 @@ export default function Page() {
         used to build components like Popover, Dropdown, etc.
       </Text>
       <MyPopup />
-      <MyPopup />
-      <MyPopup />
-      <MyPopup />
-      <MyPopup />
-      <MyPopup />
-      <MyPopup />
-      <MyPopup />
-      <MyPopup />
-      <MyPopup />
-      <MyPopup />
-      <MyPopup />
-      <MyPopup />
     </View>
   );
 }
 
 const MyPopup = () => {
-  const { theme } = useStyles();
+  const { styles } = useStyles(stylesheet);
   return (
     <Popup>
       <PopupTrigger asChild>
-        <Button size="sm">Open Popup</Button>
+        <Button size="md">Open Popup</Button>
       </PopupTrigger>
       <PopupPortal>
-        <PopupOverlay style={{ backgroundColor: theme.colors.overlay }} />
+        <PopupOverlay style={styles.popupOverlay} />
         <PopupContent
           maxWidth={260}
-          placement={'bottom-start'}
-          avoidCollisions={true}>
+          placement={'bottom'}
+          avoidCollisions={true}
+          style={styles.popupContent}>
           <PopupArrow />
           <Text variant="bodySm">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci,
-            neque. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Quibusdam, ducimus? Lorem ipsum dolor sit, amet consectetur
+            Popup is a{' '}
+            <Text fontFamily="interBold" inherit>
+              primitive
+            </Text>{' '}
+            which can be used to build components like Popover, Dropdown, etc.
           </Text>
         </PopupContent>
       </PopupPortal>
@@ -62,11 +53,17 @@ const MyPopup = () => {
   );
 };
 
-const stylesheet = createStyleSheet((theme, rt) => ({
+const stylesheet = createStyleSheet(theme => ({
   container: {
     flex: 1,
     gap: theme.space[12],
     paddingHorizontal: theme.space[16],
     paddingTop: theme.space[12],
+  },
+  popupOverlay: {
+    backgroundColor: theme.colors.overlay,
+  },
+  popupContent: {
+    padding: theme.space[16],
   },
 }));
