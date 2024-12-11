@@ -44,15 +44,15 @@ const Text = React.forwardRef<RNText, TextProps>(
     forwardedRef,
   ) => {
     const { styles } = useStyles(stylesheet);
-    const defaultStyles = !inherit
-      ? [
-          styles.color(color || defaultColor, highContrast, colorStep),
-          styles.variant(variant || defaultVariant),
-          fontSize && styles.fontSize(fontSize),
-          fontFamily && styles.fontFamily(fontFamily),
-          textAlign && styles.textAlign(textAlign),
-        ]
-      : null;
+    const defaultStyles = [
+      inherit && !color
+        ? null
+        : styles.color(color || defaultColor, highContrast, colorStep),
+      inherit && !variant ? null : styles.variant(variant || defaultVariant),
+      fontSize && styles.fontSize(fontSize),
+      fontFamily && styles.fontFamily(fontFamily),
+      textAlign && styles.textAlign(textAlign),
+    ];
 
     return (
       <RNText
