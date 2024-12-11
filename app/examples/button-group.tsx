@@ -98,7 +98,7 @@ function ButtonGroupWithIconButtonExample() {
           color="neutral"
           gap={8}
           isAttached={false}
-          fullWidth
+          fill
           highContrast>
           <IconButton icon="logo-apple" />
           <IconButton icon="logo-github" />

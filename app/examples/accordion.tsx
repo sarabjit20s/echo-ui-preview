@@ -9,9 +9,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/Accordion';
-import { Color } from '@/styles/tokens/colors';
-import { DeferRendering } from '@/components/DeferRendering';
-import { Spinner } from '@/components/ui/Spinner';
 
 export default function Page() {
   const { styles } = useStyles(stylesheet);
@@ -19,12 +16,6 @@ export default function Page() {
     <View style={styles.flex}>
       <ScrollView contentContainerStyle={styles.container}>
         <AccordionVariantExample />
-        <DeferRendering delayMs={200} fallback={<Spinner />}>
-          <AccordionTypeExample />
-        </DeferRendering>
-        <DeferRendering delayMs={300} fallback={<Spinner />}>
-          <AccordionColorExample />
-        </DeferRendering>
       </ScrollView>
     </View>
   );
@@ -90,85 +81,6 @@ function AccordionVariantExample() {
             );
           })}
         </Accordion>
-      </View>
-    </>
-  );
-}
-
-function AccordionTypeExample() {
-  const { styles } = useStyles(stylesheet);
-  return (
-    <>
-      <View style={styles.group}>
-        <Text variant="headingSm" highContrast>
-          Types
-        </Text>
-
-        <Text variant="labelMd" highContrast>
-          Single
-        </Text>
-        <Accordion type="single" variant="soft">
-          {data.map(({ id, title, content }) => {
-            return (
-              <AccordionItem key={id} value={id}>
-                <AccordionTrigger>{title}</AccordionTrigger>
-                <AccordionContent>
-                  <Text>{content}</Text>
-                </AccordionContent>
-              </AccordionItem>
-            );
-          })}
-        </Accordion>
-
-        <Text variant="labelMd" highContrast>
-          Multiple
-        </Text>
-        <Accordion type="multiple" variant="soft">
-          {data.map(({ id, title, content }) => {
-            return (
-              <AccordionItem key={id} value={id}>
-                <AccordionTrigger>{title}</AccordionTrigger>
-                <AccordionContent>
-                  <Text>{content}</Text>
-                </AccordionContent>
-              </AccordionItem>
-            );
-          })}
-        </Accordion>
-      </View>
-    </>
-  );
-}
-
-function AccordionColorExample() {
-  const { styles } = useStyles(stylesheet);
-  const colors: Color[] = ['neutral', 'primary', 'green', 'red'];
-  return (
-    <>
-      <View style={styles.group}>
-        <Text variant="headingSm" highContrast>
-          Colors
-        </Text>
-
-        {colors.map((color, i) => (
-          <React.Fragment key={i}>
-            <Text variant="labelMd" highContrast style={styles.capitalize}>
-              {color}
-            </Text>
-            <Accordion color={color}>
-              {data.map(({ id, title, content }) => {
-                return (
-                  <AccordionItem key={id} value={id}>
-                    <AccordionTrigger>{title}</AccordionTrigger>
-                    <AccordionContent>
-                      <Text>{content}</Text>
-                    </AccordionContent>
-                  </AccordionItem>
-                );
-              })}
-            </Accordion>
-          </React.Fragment>
-        ))}
       </View>
     </>
   );
