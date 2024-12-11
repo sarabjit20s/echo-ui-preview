@@ -22,7 +22,7 @@ type ButtonProps = PressableProps & {
   variant?: 'solid' | 'soft' | 'outline' | 'ghost' | 'text';
   startIcon?: IconProps['name'] | React.ReactElement;
   endIcon?: IconProps['name'] | React.ReactElement;
-  fullWidth?: boolean;
+  fill?: boolean;
   loading?: boolean;
   loadingText?: string;
   highContrast?: boolean;
@@ -60,7 +60,7 @@ const Button = React.forwardRef<
       size: sizeProp,
       variant: variantProp,
       disabled: disabledProp,
-      fullWidth: fullWidthProp,
+      fill: fillProp,
       loading,
       loadingText,
       highContrast: highContrastProp,
@@ -79,7 +79,7 @@ const Button = React.forwardRef<
     const color = colorProp ?? buttonGroupCtx?.color ?? 'primary';
     const disabled =
       (loading || disabledProp) ?? buttonGroupCtx?.disabled ?? false;
-    const fullWidth = fullWidthProp ?? buttonGroupCtx?.fullWidth ?? false;
+    const fill = fillProp ?? buttonGroupCtx?.fill ?? false;
     const size = sizeProp ?? buttonGroupCtx?.size ?? 'md';
     const variant = variantProp ?? buttonGroupCtx?.variant ?? 'solid';
     const highContrast =
@@ -88,7 +88,7 @@ const Button = React.forwardRef<
     const { styles } = useStyles(stylesheet, {
       size,
       variant,
-      fullWidth,
+      fill,
     });
 
     const colorStep: ColorStep =
@@ -213,7 +213,7 @@ const stylesheet = createStyleSheet(({ colors, radius, space }) => ({
           backgroundColor: colors.transparent,
         },
       },
-      fullWidth: {
+      fill: {
         true: {
           width: '100%',
           flexShrink: 1,

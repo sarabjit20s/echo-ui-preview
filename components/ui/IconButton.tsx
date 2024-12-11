@@ -19,7 +19,7 @@ type IconButtonProps = PressableProps & {
   color?: Color;
   size?: 'xs' | 'sm' | 'md' | 'lg';
   variant?: 'solid' | 'soft' | 'outline' | 'ghost' | 'text';
-  fullWidth?: boolean;
+  fill?: boolean;
   loading?: boolean;
   highContrast?: boolean;
 };
@@ -55,7 +55,7 @@ const IconButton = React.forwardRef<
       color: colorProp,
       size: sizeProp,
       variant: variantProp,
-      fullWidth: fullWidthProp,
+      fill: fillProp,
       disabled: disabledProp,
       loading,
       highContrast: highContrastProp,
@@ -71,14 +71,14 @@ const IconButton = React.forwardRef<
     // props priorty: IconButtonProps > ButtonGroupProps
     const color = colorProp ?? buttonGroupCtx?.color ?? 'primary';
     const disabled = disabledProp ?? loading ?? buttonGroupCtx?.disabled;
-    const fullWidth = fullWidthProp ?? buttonGroupCtx?.fullWidth ?? false;
+    const fill = fillProp ?? buttonGroupCtx?.fill ?? false;
     const size = sizeProp ?? buttonGroupCtx?.size ?? 'md';
     const variant = variantProp ?? buttonGroupCtx?.variant ?? 'solid';
     const highContrast =
       highContrastProp ?? buttonGroupCtx?.highContrast ?? false;
 
     const { styles } = useStyles(stylesheet, {
-      fullWidth,
+      fill,
       size,
       variant,
     });
@@ -182,7 +182,7 @@ export const stylesheet = createStyleSheet(({ colors, radius }) => ({
           backgroundColor: colors.transparent,
         },
       },
-      fullWidth: {
+      fill: {
         true: {
           width: '100%',
           flexShrink: 1,

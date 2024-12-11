@@ -13,7 +13,7 @@ type ButtonGroupVariant = ButtonProps['variant'];
 
 type ButtonGroupContextValue = {
   disabled?: boolean;
-  fullWidth: boolean;
+  fill: boolean;
   gap: Space;
   isAttached: boolean;
   orientation: ButtonGroupOrientation;
@@ -40,7 +40,7 @@ const useButtonGroupButtonContext = () =>
 
 type ButtonGroupProps = ViewProps & {
   disabled?: boolean;
-  fullWidth?: boolean;
+  fill?: boolean;
   gap?: Space;
   /**
    * Attach the buttons to each other
@@ -61,7 +61,7 @@ const ButtonGroup = React.forwardRef<
     {
       children,
       disabled,
-      fullWidth = false,
+      fill = false,
       gap = 0,
       isAttached = true,
       orientation = 'horizontal',
@@ -75,7 +75,7 @@ const ButtonGroup = React.forwardRef<
     forwardedRef,
   ) => {
     const { styles } = useStyles(stylesheet, {
-      fullWidth,
+      fill,
     });
 
     const arrChildren = Array.isArray(children) ? children : [children];
@@ -85,7 +85,7 @@ const ButtonGroup = React.forwardRef<
       <ButtonGroupContext.Provider
         value={{
           disabled,
-          fullWidth,
+          fill,
           gap,
           isAttached,
           orientation,
@@ -138,7 +138,7 @@ const stylesheet = createStyleSheet(theme => ({
     flexDirection: orientation === 'horizontal' ? 'row' : 'column',
     gap: theme.space[gap],
     variants: {
-      fullWidth: {
+      fill: {
         true: {
           width: '100%',
         },
