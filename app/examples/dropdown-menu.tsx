@@ -46,7 +46,7 @@ const MyDropdownMenu = () => {
           accessibilityLabel="Open Dropdown Menu"
         />
       </DropdownMenuTrigger>
-      <DropdownMenuContent placement="bottom-start" minWidth={200}>
+      <DropdownMenuContent placement="bottom-start">
         <DropdownMenuLabel>Sort by</DropdownMenuLabel>
         <DropdownMenuRadioGroup value={sortBy} onValueChange={setSortBy}>
           <DropdownMenuRadioGroupItem value="name">
@@ -120,7 +120,7 @@ const MyDropdownMenuWithSubMenu = () => {
                   variant="soft"
                   color="neutral"
                   size="sm"
-                  accessibilityLabel="Go Back"
+                  accessibilityLabel="Go back to previous menu"
                 />
               </DropdownSubMenuBackTrigger>
               <Text variant="bodyMd" highContrast>

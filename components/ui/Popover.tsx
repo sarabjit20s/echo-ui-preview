@@ -45,7 +45,7 @@ PopoverAnchor.displayName = 'PopoverAnchor';
 
 const animConfig: TimingConfig = {
   duration: 200,
-  easing: Easing.inOut(Easing.ease),
+  easing: Easing.out(Easing.ease),
   reduceMotion: ReduceMotion.System,
 };
 
