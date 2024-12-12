@@ -6,7 +6,37 @@
 
 ---
 
-## Features
+## Good to know
+- EchoUI is heavily inspired from Radix Primitives, Radix Themes and React Native Paper.
+- EchoUI uses Radix Colors as a color system. To understand Radix Colors, these docs can help you: https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale
 
-- **Mobile-First Design**: Optimized for mobile experiences, ensuring responsive and intuitive interfaces.
-- **Accessibility**: Focused on delivering accessible components for mobile platforms.
+## This can be right fit for you, if you want to
+- build Android and iOS apps
+- have full control on the code
+- build your own component library
+
+## This is not for you, if you
+- want to build web apps
+
+---
+
+## Take a look at the components
+1. Fork this repository.
+2. Clone the fork to your local machine.
+3. Install dependencies with npm:
+    ```
+    npm install
+    ```
+4. Generate the native app directories using:
+    ```
+    npm run prebuild
+    ```
+5. Create the development build.
+    - For Android
+        ```
+        npm run android
+        ```
+    - For iOS
+        ```
+        npm run ios
+        ```
