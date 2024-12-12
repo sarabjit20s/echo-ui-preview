@@ -104,7 +104,7 @@ function AlertWithDescriptionExample() {
           <AlertIcon name="checkmark-circle" />
           <AlertTitle>{title}</AlertTitle>
         </AlertHeader>
-        <AlertDescription>{description}</AlertDescription>
+        <AlertDescription isPadding>{description}</AlertDescription>
       </Alert>
     </View>
   );

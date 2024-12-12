@@ -118,7 +118,7 @@ const AlertTitle = React.forwardRef<
 AlertTitle.displayName = 'AlertTitle';
 
 type AlertDescriptionProps = TextProps & {
-  startMargin?: boolean;
+  isPadding?: boolean;
 };
 
 const descriptionVariantMap: Record<AlertSize, TextProps['variant']> = {
@@ -132,7 +132,7 @@ const AlertDescription = React.forwardRef<
   AlertDescriptionProps
 >(
   (
-    { startMargin = true, style, ...restProps }: AlertDescriptionProps,
+    { isPadding = false, style, ...restProps }: AlertDescriptionProps,
     forwardedRef,
   ) => {
     const { color, highContrast, size, variant } = useAlertContext();
@@ -146,7 +146,7 @@ const AlertDescription = React.forwardRef<
         color={color}
         variant={descriptionVariantMap[size]}
         highContrast={highContrast}
-        style={[startMargin && styles.description, style]}
+        style={[isPadding && styles.description, style]}
         {...restProps}
       />
     );
@@ -234,13 +234,13 @@ export const stylesheet = createStyleSheet(({ colors, radius, space }) => ({
     variants: {
       size: {
         sm: {
-          marginStart: space[24],
+          paddingStart: space[24],
         },
         md: {
-          marginStart: 30,
+          paddingStart: 30,
         },
         lg: {
-          marginStart: space[36],
+          paddingStart: space[36],
         },
       },
     },
