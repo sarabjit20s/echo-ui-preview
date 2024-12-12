@@ -70,6 +70,10 @@ const examples: Example[] = [
     name: 'Popup',
     href: '/examples/popup',
   },
+  {
+    name: 'Popover',
+    href: '/examples/popover',
+  },
 ];
 
 export default function ExampleList() {
