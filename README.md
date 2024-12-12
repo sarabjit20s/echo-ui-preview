@@ -15,9 +15,6 @@
 - have full control on the code
 - build your own component library
 
-## This is not for you, if you
-- want to build web apps
-
 ---
 
 ## Take a look at the components
