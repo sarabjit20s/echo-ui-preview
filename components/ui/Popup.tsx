@@ -427,8 +427,8 @@ const PopupContent = React.forwardRef<
 PopupContent.displayName = 'PopupContent';
 
 type PopupArrowProps = {
-  size?: number;
-  customColor?: ColorValue;
+  arrowSize?: number;
+  arrowColor?: ColorValue;
 };
 
 /**
@@ -437,19 +437,19 @@ type PopupArrowProps = {
 const PopupArrow = React.forwardRef<
   React.ElementRef<typeof Svg>,
   PopupArrowProps
->(({ size = 6, customColor }, forwardedRef) => {
+>(({ arrowSize = 6, arrowColor }, forwardedRef) => {
   const { arrowRef, arrowData, canRenderArrow } = usePopupContentContext();
   const { theme } = useStyles();
 
   const refs = useComposedRefs(arrowRef as any, forwardedRef);
 
-  const width = size * 2;
-  const height = size;
+  const width = arrowSize * 2;
+  const height = arrowSize;
   // stroke width can be added to make the corners rounded with `strokeLinejoin` prop
   // while keeping the size constant
   const strokeWidth = 0;
   const halfStroke = strokeWidth / 2;
-  const color = customColor ?? theme.colors.neutral2;
+  const color = arrowColor ?? theme.colors.neutral2;
 
   return (
     canRenderArrow && (
