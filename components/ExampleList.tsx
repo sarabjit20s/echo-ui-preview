@@ -1,4 +1,5 @@
 import { Link, LinkProps } from 'expo-router';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import { Text } from './ui/Text';
 import { Icon } from './ui/Icon';
@@ -74,11 +75,16 @@ const examples: Example[] = [
     name: 'Popover',
     href: '/examples/popover',
   },
+  {
+    name: 'Dropdown Menu',
+    href: '/examples/dropdown-menu',
+  },
 ];
 
 export default function ExampleList() {
+  const { styles } = useStyles(stylesheet);
   return (
-    <List>
+    <List contentContainerStyle={styles.container}>
       <ListGroup>
         {examples
           .sort((a, b) => a.name.localeCompare(b.name))
@@ -98,3 +104,9 @@ export default function ExampleList() {
     </List>
   );
 }
+
+const stylesheet = createStyleSheet((theme, rt) => ({
+  container: {
+    paddingBottom: rt.insets.bottom,
+  },
+}));
