@@ -102,7 +102,7 @@ DropdownMenuContent.displayName = 'DropdownMenuContent';
 
 const animConfig: TimingConfig = {
   duration: 200,
-  easing: Easing.inOut(Easing.ease),
+  easing: Easing.out(Easing.ease),
   reduceMotion: ReduceMotion.System,
 };
 
@@ -334,6 +334,9 @@ type DropdownMenuCheckboxItemProps = Omit<
   'children' | 'size' | 'variant'
 > & {
   children: React.ReactNode;
+  startIcon?: IconProps['name'];
+  endIcon?: IconProps['name'];
+  closeOnPress?: boolean;
 };
 
 const DropdownMenuCheckboxItem = React.forwardRef<
@@ -344,6 +347,9 @@ const DropdownMenuCheckboxItem = React.forwardRef<
     {
       children,
       color = 'neutral',
+      startIcon,
+      endIcon,
+      closeOnPress = true,
       disabled = false,
       onPress: onPressProp,
       style,
@@ -358,9 +364,11 @@ const DropdownMenuCheckboxItem = React.forwardRef<
     const onPress = React.useCallback(
       (e: GestureResponderEvent) => {
         onPressProp?.(e);
-        onClose();
+        if (closeOnPress) {
+          onClose();
+        }
       },
-      [onPressProp, onClose],
+      [onPressProp, onClose, closeOnPress],
     );
 
     const itemStyle = (state: PressableStateCallbackType) => {
@@ -385,6 +393,15 @@ const DropdownMenuCheckboxItem = React.forwardRef<
           style={itemStyle}
           {...restProps}>
           <CheckboxIndicator />
+          {startIcon && (
+            <Icon
+              name={startIcon}
+              size="lg"
+              color={color}
+              highContrast={color === 'neutral'}
+              disabled={!!disabled}
+            />
+          )}
           <Text
             variant="bodyMd"
             color={color}
@@ -392,6 +409,16 @@ const DropdownMenuCheckboxItem = React.forwardRef<
             disabled={!!disabled}>
             {children}
           </Text>
+          {endIcon && (
+            <Icon
+              name={endIcon}
+              size="lg"
+              color={color}
+              highContrast={color === 'neutral'}
+              disabled={!!disabled}
+              style={styles.endIcon}
+            />
+          )}
         </Checkbox>
       </>
     );
@@ -427,14 +454,27 @@ const DropdownMenuRadioGroup = React.forwardRef<
 
 DropdownMenuRadioGroup.displayName = 'DropdownMenuRadioGroup';
 
-type DropdownMenuRadioGroupItemProps = RadioGroupItemProps;
+type DropdownMenuRadioGroupItemProps = RadioGroupItemProps & {
+  startIcon?: IconProps['name'];
+  endIcon?: IconProps['name'];
+  closeOnPress?: boolean;
+};
 
 const DropdownMenuRadioGroupItem = React.forwardRef<
   React.ElementRef<typeof Pressable>,
   DropdownMenuRadioGroupItemProps
 >(
   (
-    { children, disabled = false, onPress: onPressProp, style, ...restProps },
+    {
+      children,
+      startIcon,
+      endIcon,
+      closeOnPress = true,
+      disabled = false,
+      onPress: onPressProp,
+      style,
+      ...restProps
+    },
     forwardedRef,
   ) => {
     const { color } = useRadioGroupContext();
@@ -468,6 +508,15 @@ const DropdownMenuRadioGroupItem = React.forwardRef<
           style={itemStyle}
           {...restProps}>
           <RadioGroupIndicator />
+          {startIcon && (
+            <Icon
+              name={startIcon}
+              size="lg"
+              color={color}
+              highContrast={color === 'neutral'}
+              disabled={!!disabled}
+            />
+          )}
           <Text
             variant="bodyMd"
             color={color}
@@ -475,6 +524,16 @@ const DropdownMenuRadioGroupItem = React.forwardRef<
             disabled={!!disabled}>
             {children}
           </Text>
+          {endIcon && (
+            <Icon
+              name={endIcon}
+              size="lg"
+              color={color}
+              highContrast={color === 'neutral'}
+              disabled={!!disabled}
+              style={styles.endIcon}
+            />
+          )}
         </RadioGroupItem>
       </>
     );
@@ -691,7 +750,7 @@ const stylesheet = createStyleSheet(({ colors, radius, space }) => ({
   menuContainer: {
     padding: 0,
     backgroundColor: colors.neutral2,
-    borderRadius: radius.md,
+    borderRadius: radius.lg,
     borderCurve: 'continuous',
     shadowColor: colors.shadow,
     shadowOffset: {
@@ -703,24 +762,25 @@ const stylesheet = createStyleSheet(({ colors, radius, space }) => ({
     elevation: 24,
   },
   menu: {
-    paddingVertical: space[12],
-    borderRadius: radius.md,
+    paddingVertical: space[8],
+    borderRadius: radius.lg,
+    overflow: 'hidden',
   },
   label: {
     textAlign: 'left',
-    paddingHorizontal: space[16],
+    paddingHorizontal: space[20],
     paddingVertical: space[8],
   },
   item: (pressed: boolean, color: Color) => ({
     flexDirection: 'row',
     alignItems: 'center',
     gap: space[16],
-    paddingHorizontal: space[16],
+    paddingHorizontal: space[20],
     paddingVertical: space[12],
     backgroundColor: pressed ? colors[`${color}3`] : colors.transparent,
   }),
   endIcon: {
-    flex: 1,
+    flexGrow: 1,
     textAlign: 'right',
   },
   checkboxItem: {
@@ -737,7 +797,8 @@ const stylesheet = createStyleSheet(({ colors, radius, space }) => ({
     alignItems: 'center',
     gap: space[12],
     paddingHorizontal: space[12],
-    marginBottom: space[8],
+    paddingTop: space[4],
+    paddingBottom: space[8],
   },
 }));
 
