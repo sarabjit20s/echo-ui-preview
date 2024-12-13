@@ -2,6 +2,8 @@
 
 **EchoUI** is a mobile-first, accessible library designed for seamless development with React Native. Built using `react-native-unistyles`, this library prioritizes performance and accessibility on mobile platforms.
 
+> **Note:** The term `library` doesn't mean it comes as a dependency. You can copy and paste components into your project.
+
 > **Note:** This library is currently under development.
 
 ---
