@@ -79,6 +79,10 @@ const examples: Example[] = [
     name: 'Dropdown Menu',
     href: '/examples/dropdown-menu',
   },
+  {
+    name: 'Dialog',
+    href: '/examples/dialog',
+  },
 ];
 
 export default function ExampleList() {
