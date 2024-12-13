@@ -362,7 +362,9 @@ const PopupContent = React.forwardRef<
 
     React.useEffect(() => {
       const listener = BackHandler.addEventListener('hardwareBackPress', () => {
-        onClose();
+        if (closeOnBackPress) {
+          onClose();
+        }
         return true;
       });
       return () => listener.remove();
